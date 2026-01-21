@@ -129,7 +129,7 @@ export const PracticeSummaryCard: React.FC<PracticeSummaryCardProps> = ({ practi
                 </div>
                 <div className="mt-auto pt-6 border-t border-slate-50">
                     <div className="flex items-center justify-between mb-3 px-1">
-                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Growth Plan</div>
+                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Recommendations</div>
                     </div>
                     <ul className="space-y-3">
                         {recommendations.map((rec, idx) => (
