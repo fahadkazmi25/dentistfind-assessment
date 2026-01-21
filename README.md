@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Practice Performance Dashboard - Practice Summary Card
 
-## Getting Started
+A premium, interactive Practice Summary Card component built with React, Next.js, and Tailwind CSS. Designed to provide dental practice owners with immediate, intuitive insights into their performance metrics.
 
-First, run the development server:
+## 🚀 Getting Started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Run Development Server:**
+   ```bash
+   npm run dev
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Open Page:**
+   View the results at [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠 Component & Styling Decisions
 
-To learn more about Next.js, take a look at the following resources:
+### **1. Architecture & Structure**
+- I chose a **modular component structure**:
+  - `PracticeSummaryCard`: Acts as the parent container responsible for layout, data mapping, and status-based branding.
+  - `TrendLine`: A specialized sub-component for rendering the SVG visualization.
+- **Why?** This separation of concerns makes the code more maintainable. The `TrendLine` can be reused in other areas of the dashboard (like a sidebar or a detailed report page) without duplicating complex SVG path calculation logic.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **2. Styling Approach**
+- **Tailwind CSS**: Chosen for its utility-first nature, which allowed me to build extremely custom, high-fidelity designs (like Gaussian blurs, custom shadows, and 3D perspective) very quickly.
+- **Outcome**: This eliminated the need for heavy UI libraries or scattered CSS modules, keeping the styling logic bundled directly with the component's state.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **3. Consistency & Responsiveness**
+- **Visual Tokens**: All state-based colors (Emerald for Success, Rose for Risk) are managed through a `statusConfig` object, ensuring that shadows, text, and chart colors are always perfectly synchronized.
+- **Responsive Layout**: Used a mobile-first approach with Tailwind's grid system (`grid-cols-1 lg:grid-cols-2 xl:grid-cols-3`). Cards transition from a single-column stack on mobile to a multi-column grid on desktop while maintaining internal spacing integrity.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📈 Scaling & Real-World Use
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **Integrating into a Larger Dashboard**
+- **Design System**: I would move the `statusConfig` and recurring color tokens into the `tailwind.config.ts` file to ensure the same "High Performer" emerald is used across the entire platform.
+- **Data Orchestration**: Integrate with a state management library (like TanStack Query) to handle real-time data updates and skeleton loading states for the cards.
+
+### **With One Extra Day...**
+- **Accessibility**: Add better ARIA support and keyboard focus states to make the cards navigable for screen readers.
+- **Animations**: Use `Framer Motion` to add smooth entry animations and layout transitions when the status changes.
+- **Testing**: Implement Vitest/React Testing Library to verify that the status logic (e.g., Conversion Rate > 20% => High Performer) works correctly across all edge cases.
+- **Localization**: Abstract hardcoded strings into an i18n system to support practices in multiple regions.
+
+---
+
+## ⏱ Time Management
+
+Total duration: **~2 Hours**
+
+1. **Setup & Data Modeling (20 mins)**: Initialized Next.js layout, configured fonts (Outfit), and defined the PracticeSummary TypeScript interfaces.
+2. **Component Structure & Core Metrics (35 mins)**: Built the basic card layout and mapped the mock data to the card fields.
+3. **SVG Trendline & Interaction (40 mins)**: Engineered the custom SVG path-smoothing logic and implemented the interactive mouse-tracking tooltip.
+4. **Final Polish & Styling (25 mins)**: Added the 3D perspective effects, ambient light glows, and refined the color palette for a "premium" feel.
