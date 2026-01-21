@@ -24,7 +24,15 @@ export const PracticeSummaryCard: React.FC<PracticeSummaryCardProps> = ({ practi
             border: "border-emerald-100",
             dot: "bg-emerald-500",
             glow: "shadow-emerald-200",
-            chart: "#10b981"
+            chart: "#10b981",
+            hoverShadow: "group-hover:shadow-[0_20px_50px_rgba(16,185,129,0.15)]",
+            hoverBorder: "group-hover:border-emerald-100",
+            hoverText: "group-hover:text-emerald-900",
+            glowBg: "bg-emerald-50",
+            innerHoverBg: "group-hover:bg-emerald-50/30",
+            innerHoverBorder: "group-hover:border-emerald-100/50",
+            recHoverBg: "group-hover/rec:bg-emerald-500",
+            metricColor: "text-emerald-500"
         },
         "At Risk": {
             bg: "bg-rose-50/50",
@@ -32,7 +40,15 @@ export const PracticeSummaryCard: React.FC<PracticeSummaryCardProps> = ({ practi
             border: "border-rose-100",
             dot: "bg-rose-500",
             glow: "shadow-rose-200",
-            chart: "#f43f5e"
+            chart: "#f43f5e",
+            hoverShadow: "group-hover:shadow-[0_20px_50px_rgba(244,63,94,0.15)]",
+            hoverBorder: "group-hover:border-rose-100",
+            hoverText: "group-hover:text-rose-900",
+            glowBg: "bg-rose-50",
+            innerHoverBg: "group-hover:bg-rose-50/30",
+            innerHoverBorder: "group-hover:border-rose-100/50",
+            recHoverBg: "group-hover/rec:bg-rose-500",
+            metricColor: "text-rose-500"
         },
         "Stable": {
             bg: "bg-slate-50/50",
@@ -40,7 +56,15 @@ export const PracticeSummaryCard: React.FC<PracticeSummaryCardProps> = ({ practi
             border: "border-slate-100",
             dot: "bg-amber-400",
             glow: "shadow-amber-200",
-            chart: "#f59e0b"
+            chart: "#f59e0b",
+            hoverShadow: "group-hover:shadow-[0_20px_50px_rgba(245,158,11,0.15)]",
+            hoverBorder: "group-hover:border-amber-100",
+            hoverText: "group-hover:text-amber-900",
+            glowBg: "bg-amber-50",
+            innerHoverBg: "group-hover:bg-amber-50/30",
+            innerHoverBorder: "group-hover:border-amber-100/50",
+            recHoverBg: "group-hover/rec:bg-amber-500",
+            metricColor: "text-amber-500"
         }
     };
 
@@ -58,11 +82,11 @@ export const PracticeSummaryCard: React.FC<PracticeSummaryCardProps> = ({ practi
 
     return (
         <div className="group relative w-full h-full min-h-[440px] perspective-1000 cursor-pointer">
-            <div className="relative h-full bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 ease-out flex flex-col group-hover:shadow-[0_20px_50px_rgba(16,185,129,0.12)] group-hover:-translate-y-2 group-hover:border-emerald-100">
-                <div className="absolute top-0 right-0 -mr-4 -mt-4 w-32 h-32 bg-emerald-50 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+            <div className={`relative h-full bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 ease-out flex flex-col ${config.hoverShadow} group-hover:-translate-y-2 ${config.hoverBorder}`}>
+                <div className={`absolute top-0 right-0 -mr-4 -mt-4 w-32 h-32 ${config.glowBg} rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
                 <div className="relative z-10 flex justify-between items-start mb-10">
                     <div className="max-w-[70%]">
-                        <h2 className="text-2xl font-bold text-slate-900 tracking-tight leading-none mb-2 group-hover:text-emerald-950 transition-colors">
+                        <h2 className={`text-2xl font-bold text-slate-900 tracking-tight leading-none mb-2 ${config.hoverText} transition-colors`}>
                             {name}
                         </h2>
                         <div className="flex items-center text-slate-400 font-medium text-sm">
@@ -79,12 +103,12 @@ export const PracticeSummaryCard: React.FC<PracticeSummaryCardProps> = ({ practi
                         </span>
                     </div>
                 </div>
-                <div className="relative mb-8 p-6 rounded-[2rem] bg-slate-50/50 border border-slate-100/50 group-hover:bg-emerald-50/30 group-hover:border-emerald-100/50 transition-all duration-500 overflow-hidden">
+                <div className={`relative mb-8 p-6 rounded-[2rem] bg-slate-50/50 border border-slate-100/50 ${config.innerHoverBg} ${config.innerHoverBorder} transition-all duration-500 overflow-hidden`}>
                     <div className="relative z-10">
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Conversion Rate</div>
                         <div className="flex items-baseline gap-2">
                             <div className="text-5xl font-black text-slate-900 tracking-tighter">
-                                {conversionRate}<span className="text-emerald-500 ml-0.5">%</span>
+                                {conversionRate}<span className={`${config.metricColor} ml-0.5`}>%</span>
                             </div>
                         </div>
                     </div>
@@ -110,7 +134,7 @@ export const PracticeSummaryCard: React.FC<PracticeSummaryCardProps> = ({ practi
                     <ul className="space-y-3">
                         {recommendations.map((rec, idx) => (
                             <li key={idx} className="flex items-center  ">
-                                <div className={`w-6 h-6 rounded-lg ${config.bg} flex items-center justify-center mr-3 border ${config.border} shadow-sm group-hover/rec:bg-emerald-500 transition-colors`}>
+                                <div className={`w-6 h-6 rounded-lg ${config.bg} flex items-center justify-center mr-3 border ${config.border} shadow-sm ${config.recHoverBg} transition-colors`}>
                                     <svg className={`w-3 h-3 ${config.text}  transition-colors`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                                     </svg>
