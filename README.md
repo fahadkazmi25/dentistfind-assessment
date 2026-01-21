@@ -39,7 +39,7 @@ A premium, interactive Practice Summary Card component built with React, Next.js
 
 ## 📈 Scaling & Real-World Use
 
-### **Integrating into a Larger Dashboard**
+### **Integrating into a Larger PracticeFuel Dashboard**
 - **Design System**: I would move the `statusConfig` and recurring color tokens into the `tailwind.config.ts` file to ensure the same "High Performer" emerald is used across the entire platform.
 - **Data Orchestration**: Integrate with a state management library (like TanStack Query) to handle real-time data updates and skeleton loading states for the cards.
 
